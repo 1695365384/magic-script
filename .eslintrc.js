@@ -1,44 +1,41 @@
 module.exports = {
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  extends: [
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    'plugin:react/recommended',
-    'airbnb',
-    'plugin:jsx-control-statements/recommended',
-    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
-  ],
+  parser: '@typescript-eslint/parser', // 定义ESLint的解析器
+  extends: ['plugin:prettier/recommended'], //定义文件继承的子规范
+  plugins: ['@typescript-eslint', 'react-hooks', 'eslint-plugin-react'], //定义了该eslint文件所依赖的插件
+  env: {
+    //指定代码的运行环境
+    browser: true,
+    node: true,
+  },
   settings: {
+    //自动发现React的版本，从而进行规范react代码
     react: {
+      pragma: 'React',
       version: 'detect',
     },
   },
-  plugins: ['@typescript-eslint', 'react', 'jsx-control-statements', 'prettier'],
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
-    mocha: true,
-    'jsx-control-statements/jsx-control-statements': true,
-  },
-  globals: {
-    $: true,
+  parserOptions: {
+    //指定ESLint可以解析JSX语法
+    ecmaVersion: 2019,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   rules: {
-    'prettier/prettier': 1,
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
-    eqeqeq: ['warn', 'always'],
-    'prefer-const': ['error', { destructuring: 'all', ignoreReadBeforeAssign: true }],
-    '@typescript-eslint/indent': ['error', 2, { VariableDeclarator: 4, SwitchCase: 1 }],
-    '@typescript-eslint/no-unused-vars': 0,
-    '@typescript-eslint/interface-name-prefix': 0,
-    '@typescript-eslint/explicit-member-accessibility': 0,
-    '@typescript-eslint/no-triple-slash-reference': 0,
-    '@typescript-eslint/ban-ts-ignore': 0,
-    '@typescript-eslint/no-this-alias': 0,
-    '@typescript-eslint/triple-slash-reference': ['error', { path: 'always', types: 'never', lib: 'never' }],
-    // React相关校验规则
-    'react/jsx-indent': [2, 4],
-    'react/jsx-no-undef': [2, { allowGlobals: true }],
-    'jsx-control-statements/jsx-use-if-tag': 0,
+    // 自定义的一些规则
+    'prettier/prettier': 'error',
+    'linebreak-style': ['error', 'unix'],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
+    'react/react-in-jsx-scope': 'error',
+    'valid-typeof': [
+      'warn',
+      {
+        requireStringLiterals: false,
+      },
+    ],
   },
 };

@@ -4,41 +4,52 @@ const cli = cac('magic');
 const path = require('path');
 
 cli.command('').action(() => {
-    cli.outputHelp();
+  cli.outputHelp();
 });
-cli.option('--env [env]', {
+cli
+  .option('--env [env]', {
     description: 'Environment passed to the config',
     alias: 'env',
     choices: ['development', 'production'],
     requiresArg: true,
-}).option('--port [port]', {
+  })
+  .option('--port [port]', {
     description: 'Development environment server port',
     alias: 'port',
-});
+  });
 
-cli.command('ssr', '服务端渲染', {
+cli
+  .command('ssr', '服务端渲染', {
     allowUnknownOptions: {},
-}).action(() => {
+  })
+  .action(() => {
     require('../lib/scripts/gen-tmp-dir');
     require('../lib/scripts/gen-path');
     require('../lib/scripts/start');
-});
+  });
 
 cli.command('build', '打包').action(() => {
-    require('../lib/scripts/gen-tmp-dir');
-    require('../lib/scripts/gen-path');
-    require('../lib/scripts/build');
+  process.env.PUBLIC_PATH = path.resolve(process.cwd(), 'dist');
+  // require('../lib/scripts/gen-tmp-dir');
+  // require('../lib/scripts/gen-path');
+  require('../lib/scripts/build');
 });
 
 cli.command('start', '开发环境').action((options) => {
-    process.env.PORT = options.port || '3000';
-    process.env.PUBLIC_PATH = path.resolve(process.cwd(), 'dist');
-    process.env.NODE_ENV = 'development';
-    require('../lib/scripts/gen-tmp-dir');
-    require('../lib/scripts/gen-path');
-    require('../lib/scripts/routerByFile');
-    require('../lib/scripts/dev');
+  process.env.PORT = options.port || '3000';
+  require('../lib/scripts/gen-tmp-dir');
+  require('../lib/scripts/gen-path');
+  require('../lib/scripts/routerByFile');
+  require('../lib/scripts/dev');
 });
+
+cli.command('dll', 'DLL').action(() => {
+  require('../lib/scripts/dll');
+});
+
+cli.command('analyze', '分析打包').action(() => {
+  require('../lib/scripts/analyze')
+})
 
 cli.help();
 

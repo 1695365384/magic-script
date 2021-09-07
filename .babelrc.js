@@ -17,5 +17,14 @@ module.exports = {
                 legacy: true,
             },
         ],
+        [
+            'import',
+            {
+              libraryName: 'antd',
+              libraryDirectory: 'es',
+              style: true,
+            },
+            'ant',
+          ],
     ],
 };

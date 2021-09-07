@@ -2,8 +2,8 @@
     // 参考：https://jkchao.github.io/typescript-book-chinese/project/compilationContext.html#%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9
     "compilerOptions": {
         /* Basic Options */
-        "target": "ES2018" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
-        "module": "system" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+        "target": "ESNEXT" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
+        "module": "ESNext" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
         "lib": [
             "es2015",
             "es2016",
@@ -16,7 +16,7 @@
         // "sourceMap": true,                     /* Generates corresponding '.map' file. */
         // "outFile": "./",                       /* Concatenate and emit output to single file. */
         "outDir": "./dist" /* Redirect output structure to the directory. */,
-        "rootDir": "./src/app" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
+        "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
         // "composite": true,                     /* Enable project compilation */
         "removeComments": true /* True=> comments will be removed from the output */,
         // "noEmit": true,                        /* Do not emit outputs. */
@@ -70,5 +70,8 @@
         "suppressImplicitAnyIndexErrors": true,
         "resolveJsonModule": true
     },
-    "include": ["src/**"]
+    "include": [
+        "./src",
+        "./node_modules/@types"
+    ]
 }
