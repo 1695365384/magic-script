@@ -1,8 +1,8 @@
 {
-  "name": "magic-cli",
+  "name": "@bundy-lmw/magic_script",
   "version": "1.0.0",
   "description": "一个可插拔的企业级react微前端脚手架",
-  "main": "index.js",
+  "main": "./bin/magic",
   "bin": {
     "magic": "./bin/magic"
   },
@@ -25,7 +25,7 @@
     "magic-react",
     "magic-script"
   ],
-  "author": "bundy",
+  "author": "bundy-lmw",
   "license": "ISC",
   "dependencies": {
     "antd": "^4.16.2",
@@ -96,6 +96,7 @@
     "ts-node": "9.1.1",
     "typed-css-modules-loader": "0.0.18",
     "typescript": "^4.4.2",
+    "url-loader": "^4.1.1",
     "webpack": "^5.38.1",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-dev-middleware": "^5.0.0",
